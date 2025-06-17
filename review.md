@@ -115,5 +115,62 @@ int main() {
 * 字符串数组：输入方式；输出方式；
 * count函数int aOnes = count(a.begin(), a.end(), '1');
  # 折半查找关键字
- 
+ ```
+#include<bits/stdc++.h>
+using namespace std;
+struct nums{
+    int num;
+    int se;
+};
+vector<nums> number;
+ int n;
+bool cmp(nums x,nums y){
+    return x.num<y.num;
+}
+void binary(int target){
+    int left=0;
+    int right=n-1;
+    bool a=false;
+    while(left<=right){
+        int mid=(left+right)/2;
+        if(target==number[mid].num){
+            a=true;
+            cout<<mid+1<<" "<<number[mid].se<<endl;
+            break;
+        }
+        else if(target>number[mid].num){
+            left=mid+1;
+           
+        }
+        else {
+            right=mid-1;
+            
+        }
+    }
+    if(!a){
+        cout<<"-1"<<endl;
+    }
 
+}
+int main(){
+
+    cin>>n;
+    number=vector<nums> (n);
+ 
+    for(int i=0;i<n;i++){
+        cin>>number[i].num;
+        number[i].se=i+1;
+    }
+    int t;
+    cin>>t;
+    vector<int> sea(t);
+    sort(number.begin(),number.end(),cmp);
+    for(int i=0;i<t;i++){
+       cin>>sea[i];
+      
+       binary(sea[i]);
+    }
+return 0;
+}
+```
+# 鹊桥相会
